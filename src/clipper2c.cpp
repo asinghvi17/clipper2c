@@ -174,55 +174,6 @@ ClipperRectD *clipper_pathsd_bounds(void *mem, ClipperPathsD *paths) {
   return to_c(new (mem) RectD(r));
 }
 
-ClipperPaths64 *clipper_path64_rect_clip(void *mem, ClipperRect64 *rect,
-                                         ClipperPath64 *path) {
-  auto p = RectClip(*from_c(rect), *from_c(path));
-  return to_c(new (mem) Paths64(p));
-}
-
-ClipperPathsD *clipper_pathd_rect_clip(void *mem, ClipperRectD *rect,
-                                       ClipperPathD *path, int precision) {
-  auto p = RectClip(*from_c(rect), *from_c(path), precision);
-  return to_c(new (mem) PathsD(p));
-}
-
-ClipperPaths64 *clipper_paths64_rect_clip(void *mem, ClipperRect64 *rect,
-                                          ClipperPaths64 *paths) {
-  auto p = RectClip(*from_c(rect), *from_c(paths));
-  return to_c(new (mem) Paths64(p));
-}
-
-ClipperPathsD *clipper_pathsd_rect_clip(void *mem, ClipperRectD *rect,
-                                        ClipperPathsD *paths, int precision) {
-  auto p = RectClip(*from_c(rect), *from_c(paths), precision);
-  return to_c(new (mem) PathsD(p));
-}
-
-ClipperPaths64 *clipper_path64_rect_clip_line(void *mem, ClipperRect64 *rect,
-                                              ClipperPath64 *path) {
-  auto p = RectClipLines(*from_c(rect), *from_c(path));
-  return to_c(new (mem) Paths64(p));
-}
-
-ClipperPathsD *clipper_pathd_rect_clip_line(void *mem, ClipperRectD *rect,
-                                            ClipperPathD *path, int precision) {
-  auto p = RectClipLines(*from_c(rect), *from_c(path), precision);
-  return to_c(new (mem) PathsD(p));
-}
-
-ClipperPaths64 *clipper_paths64_rect_clip_lines(void *mem, ClipperRect64 *rect,
-                                                ClipperPaths64 *paths) {
-  auto p = RectClipLines(*from_c(rect), *from_c(paths));
-  return to_c(new (mem) Paths64(p));
-}
-
-ClipperPathsD *clipper_pathsd_rect_clip_lines(void *mem, ClipperRectD *rect,
-                                              ClipperPathsD *paths,
-                                              int precision) {
-  auto p = RectClipLines(*from_c(rect), *from_c(paths), precision);
-  return to_c(new (mem) PathsD(p));
-}
-
 // Path Constructors
 
 ClipperPath64 *clipper_path64(void *mem) { return to_c(new (mem) Path64()); }
@@ -832,8 +783,6 @@ size_t clipper_polytreed_size() { return sizeof(PolyTreeD); }
 size_t clipper_clipper64_size() { return sizeof(Clipper64); }
 size_t clipper_clipperd_size() { return sizeof(ClipperD); }
 size_t clipper_clipperoffset_size() { return sizeof(ClipperOffset); }
-size_t clipper_svgwriter_size() { return sizeof(SvgWriter); }
-size_t clipper_svgreader_size() { return sizeof(SvgReader); }
 
 // destruction
 
@@ -856,12 +805,6 @@ void clipper_destruct_clipperd(ClipperClipperD *p) { from_c(p)->~ClipperD(); }
 void clipper_destruct_clipperoffset(ClipperClipperOffset *p) {
   from_c(p)->~ClipperOffset();
 }
-void clipper_destruct_svgwriter(ClipperSvgWriter *p) {
-  from_c(p)->~SvgWriter();
-}
-void clipper_destruct_svgreader(ClipperSvgReader *p) {
-  from_c(p)->~SvgReader();
-}
 
 // pointer free + destruction
 
@@ -876,8 +819,6 @@ void clipper_delete_polytreed(ClipperPolyTreeD *p) { delete from_c(p); }
 void clipper_delete_clipper64(ClipperClipper64 *p) { delete from_c(p); }
 void clipper_delete_clipperd(ClipperClipperD *p) { delete from_c(p); }
 void clipper_delete_clipperoffset(ClipperClipperOffset *p) { delete from_c(p); }
-void clipper_delete_svgwriter(ClipperSvgWriter *p) { delete from_c(p); }
-void clipper_delete_svgreader(ClipperSvgReader *p) { delete from_c(p); }
 
 #ifdef __cplusplus
 }

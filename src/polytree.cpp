@@ -82,11 +82,11 @@ const ClipperPolyTreeD *clipper_polytreed_get_child(ClipperPolyTreeD *pt,
 }
 
 void clipper_polytreed_set_inv_scale(ClipperPolyTreeD *pt, double value) {
-  return from_c(pt)->SetScale(value);
+  return from_c(pt)->SetInvScale(value);
 }
 
 double clipper_polytreed_inv_scale(ClipperPolyTreeD *pt) {
-  return from_c(pt)->Scale();
+  return from_c(pt)->InvScale();
 }
 
 ClipperPolyTreeD *clipper_polytreed_add_child(ClipperPolyTreeD *pt,
